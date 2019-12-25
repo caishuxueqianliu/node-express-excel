@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=640,minimum-scale=0,maximum-scale=5,user-scalable=no" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<title>《我的城堡》官方网站_立即下载</title>
+		<meta name="keywords" content="我的城堡" />
+		<meta name="description" content="我的城堡" />
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index, follow" />
+		<meta name="author" content="Design:; Web Layout:;" />
+		<link href="css/index.css" rel="stylesheet" type="text/css" />
+		<script>
+			if (navigator.appVersion.indexOf('Android') != -1) {
+				document.addEventListener("DOMContentLoaded", function(e) {
+					document.getElementsByTagName('body')[0].style.zoom = e.target.activeElement.clientWidth / 640;
+				});
+			};
+		</script>
+	</head>
+
+	<body>
+		<a href="http://ydwdcb.the3.changyou.com/wdcb-cyou-test_2017382014.apk" target="_blank" title="立即下载" class="t btn1">立即下载</a>
+		<div class="con con1">
+			<a href="http://ydwdcb.the3.changyou.com/wdcb-cyou-test_2017382014.apk" target="_blank" class="link link1"></a>
+		</div>
+		<div class="con con2">
+			<a href="http://ydwdcb.the3.changyou.com/wdcb-cyou-test_2017382014.apk" target="_blank" class="link link2"></a>
+		</div>
+		<div class="con con3">
+			<section class="feature">
+				<div class="box">
+					<ul class="swiper-wrapper">
+						<li class="swiper-slide">
+							<a href="javascript:;"><img src="img/cyc_01.jpg" /></a>
+							<!-- <div class="tit">
+								游戏公测宣传片
+							</div> -->
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:;"><img src="img/cyc_02.jpg" /></a>
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:;"><img src="img/cyc_03.jpg" /></a>
+						</li>
+					</ul>
+					<div class="events_nav"></div>
+				</div>
+				<a href="javascript:;" class="prev"></a>
+				<a href="javascript:;" class="next"></a>
+			</section>
+
+		</div>
+		<div class="con con4">
+			<a href="http://ydwdcb.the3.changyou.com/wdcb-cyou-test_2017382014.apk" target="_blank" class="link link3"></a>
+		</div>
+		<p class="commbot">北京科技有限公司</p>
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script>
+			//图片滑动
+			var num_video = $(".feature li").length;
+			if (num_video > 1) {
+				var video = new Swiper(".feature .box", {
+					paginationClickable : true,
+					pagination : ".events_nav",
+					prevButton : '.feature .prev',
+					nextButton : '.feature .next',
+					onClick : function(swiper) {
+					},
+					loop : true
+				});
+			}
+		</script>
+		<!--#include virtual="/inc/dma.html" -->
+	</body>
+</html>
