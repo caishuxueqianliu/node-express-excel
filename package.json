@@ -10,5 +10,11 @@
   "devDependencies": {
     "node-xlsx": "^0.12.1"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-art-template": "^1.0.1"
+  }
 }

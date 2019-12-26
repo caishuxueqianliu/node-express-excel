@@ -3,56 +3,52 @@ var express=require('express')
 var app=express()
 var path=require('path')
 
+app.engine('html', require('express-art-template'))
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 const xlsx = require('node-xlsx')
 const fs = require('fs')
 
-if(typeof require !== 'undefined') XLSX = require('xlsx');
 app.use("/public/",express.static(path.join(__dirname,'./public/')))
 app.use("/node_modules/",express.static(path.join(__dirname,'./node_modules/')))
 
-// fs.readFile("config.xlsx", (err,data)=>{
+var sheets = xlsx.parse('./data/resourse.xlsx');//获取到所有sheets
+var Num = 1;//默认从第二条数据开始，一般第一条数据是标题
+
+var da={
+name:"123",
+id:"234"
+}
+function readExcel(num){
+	var i = num;	
+	var data = sheets[0]['data'];
+	if(data.length ==i){
+		console.log("生成成功！");
+		var buffer = xlsx.build(sheets);
+		fs.writeFileSync('./data/t.xlsx',buffer,{'flag':'w'});   //生成excel
+		return ;
+	}
+	var tmp = data[i][1];//文件名
+	
+	if(tmp){
+		  sheets[0]['data'][0][0] = da.name;
+		    sheets[0]['data'][0][1] = da.id;
+		    sheets[0]['data'][0][2] = null;
+		    Num++;
+		    readExcel(Num);
+
+	}
+}
+
+//开始调用
+readExcel(Num);
 
 
-// console.log(data)
-// });
-app.get('/', function (req, res) {
-	res.setHeader("Access-Control-Allow-Origin", "*");
- res.json((xlsx.parse("config.xlsx")))
-  })
-
-// console.log( xlsx.parse("config.xlsx"))
-// console.log( xlsx.readFile("config.xlsx").data[0].lauchAdd)
-// var config=xlsx.parse("config.xlsx")
-// var a=(config)[0].data[0]
-
-// console.log(a[0])
-
-var workbook = XLSX.readFile('config.xlsx',{ cellStyles: true });
-var sheetNames = workbook.SheetNames; 
-console.log(sheetNames)
-var worksheet = workbook.Sheets["出包参数"];
-// console.log(worksheet)
-Worksheet.Delete(worksheet)
-console.log(typeof(worksheet))
-var desired_cell = worksheet["A1"];
- var desired_value = desired_cell.v;
- console.log(desired_value)
-desired_value="women"
-console.log(desired_value)
 
 
 
-// var buffer = xlsx.build([{name: "出包参数", data:arr}]); 
-//             fs.writeFile('./result/config.xlsx',buffer,function(){
-fs.writeFileSync('./result/config.xlsx',workbook,(err,files)=>{
-
-
-       console.log(XLSX.readFile('./result/config.xlsx',{ cellStyles: true }))
-
- }
- );
-
-// var data =xlsx.utils.sheet_to_json(sheet); //通过工具将表对象的数据读出来并转成json
 
 app.listen(3000,()=>{
 	console.log('sucess...')
