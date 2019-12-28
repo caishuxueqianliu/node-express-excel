@@ -8,568 +8,330 @@
   <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../favicon.ico">
-  <title>Dashboard Template for Bootstrap</title>
-  <!-- Bootstrap core CSS -->
-  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
+<!--   <link rel="icon" href="../../favicon.ico"> -->
+  <title>Examples</title>
+  <!-- Bootstrap core CSS -->
+<!--   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+<!--   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> -->
+<!--   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <link href="/public/bootstrap3.3.7.css" rel="stylesheet">
+ <!--  <link href="/public/lib/element-ui.css" rel="stylesheet"> -->
+  <link href="/public/css/main.css" rel="stylesheet">
+  <script src="/public/lib/vue-2.4.0.js"></script>
+<!-- <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script> -->
+    <script src="/public/lib/jquery.js"></script> 
+    <script src="/public/lib/vue-x.js"></script>
+ <!--    <script src="/public/lib/element-ui.js"></script> -->
+        <script src="/public/lib/axios.js"></script>
+     <script src="/public/lib/isChannelCode.js"></script>
+      <script src="/public/lib/ajaxGetData.js"></script>
+         <script src="/public/lib/inputValue.js"></script>
+           <script src="/public/lib/ajaxPost.js"></script>
+             <script src="/public/lib/isLanguage.js"></script>
+              <script src="/public/lib/selectValue.js"></script>
 </head>
 
-<body>
-<div id="demo">
-
-<form class="form-inline" novalidate name="fm">
+  <body class="text-center">
 
 
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom04">State</label>
-       <select  class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-     <option  ></option>
-      
-  </select>  
+
+ <div  id="demo"  class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">ConfigV44</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="http://192.168.0.104:3000/">Home</a>
+        <a class="nav-link" href="http://192.168.0.104:3000/download">Download</a>
+       
+      </nav>
     </div>
+  </header>
 
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom04">State</label>
-       <select v-model="cnhw" class="custom-select my-1 mr-sm-2" >
-     <option>cn</option>
-      <option>hw</option>
-  </select>  
-    </div>
+  <main role="main" class="inner cover">
+     <div class="form-signin" >
 
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input v-model="appname" type="text" class="form-control" id="validationCustom01" value="" required>
-    </div>
-     <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-    </div>
+
+  <div class="form-label-group">
+    <input v-model="channelCode" type="number"  class="form-control"  placeholder="渠道号" required autofocus>
+    <label for="inputEmail">渠道号</label>
+  </div>
+
+  <div  class="form-label-group">
+    <input v-model="gameName" type="text"  class="form-control" placeholder="游戏名" >
+    <label for="inputEmail">游戏名</label>
+  </div>
+
+
+
+    <div class="form-label-group">
+    <input v-model="ipaCode" type="text"  class="form-control" placeholder="IAPCode" >
+    <label for="inputEmail">IAPCode</label>
+  </div>
+
+    <div class="form-label-group">
+    <input v-model="platForm" type="text"  class="form-control" placeholder="Platform" >
+    <label for="inputEmail">Platform</label>
+  </div>
+
+    <div class="form-label-group">
+    <input v-model="MD5" type="text"  class="form-control" placeholder="md5" >
+    <label for="inputEmail">MD5</label>
+  </div>
+
+  <div class="form-label-group">
+    <input v-model="gameVision" type="text"  class="form-control" placeholder="出包版本号" >
+    <label for="inputPassword">出包版本号</label>
+  </div>
+
+   <div class="form-label-group">
+    <input v-model="bundleID" type="text"  class="form-control" placeholder="bundle id" >
+    <label for="inputEmail">bundle Id</label>
+  </div>
+
+    <div class="form-label-group">
+    <input  v-model="appId" type="number"  class="form-control" placeholder="appID" >
+    <label for="inputEmail">appID</label>
+  </div>
+<!-- <a href="http://192.168.0.104:3000/data/config.xls" download="config">12</a>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" id="x"> Remember 
+      <input type="checkbox" id="y"> Remember 
+       <input type="checkbox" id="z"> Remember 
+    </label>
+  </div>
+ -->
+   <button  @click="submit" class="btn btn-lg btn-secondary btn-block">Submit</button>
+
+</div>
+
+  </main>
 
  
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-    </div>
 
-
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-    </div>
-
-  
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-    </div>
-
-
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-    </div>
-
-    <div class="col-md-3 mb-3">
-     <button class="btn btn-primary" @click="tj" type="button">Submit form</button>
-
-      </div>
     
    
- 
-</div>
-</form>
+
 
 </div>
+
+
 
 </body>
 
 
 
 <script>
- var xl={
-      
-      id: 1,
-      username: "admin",
-      age: 18,
-      job: 2
-    }
+
+
+
+const store = new Vuex.Store({
+  state: {
+    da:[],
+    db:{},
+    xggy:{},
+    qmkf:{},
+    
   
+  },
+  mutations: {
+    getda(state,da){
+      this.state.da=da
+    },
+    getdb(state,db){
+      this.state.db=db
+    },
+    getxggy(state,xggy){
+      this.state.xggy=xggy
+    },
+    getqmkf(state,qmkf){
+      this.state.qmkf=qmkf
+    }
+  }
+})
 
 
 
-var da=[
-"LaunchAdd",
-"CandidateDomain1",
-"CandidateDomain2",
-"Identifier",
-"ChannelCode",
-"",
-"GameName",
-"BundleID",
-"Platform",
-"IAPCode",
-"",
-"ShortVersion",
-"BuildVersion",
-"VersionCode",
-"",
-"Lang",
-"Region",
-"Channel",
-"",
-"RechargeType",
-"WorkStyle",
-"LoginMod",
-"ReviewType",
-"",
-"Mark",
-"",
-"PackedLoginChannels",
-"PackedWorkChannels",
-"PackedStatChannels",
-"",
-"InApp_ProductCode",
-"InApp_ThirdOpen",
-"",
-"IcicID",
-"IcicKey",
-"XGSdkNew",
-"XGThirdPay",
-"XGCenterUrl",
-"",
-"WXAppId",
-"WxH5IAP",
-"WxH5IAPAppId",
-"WxH5IAPReferer",
-"",
-"ALiAppId",
-"",
-"GPClientId",
-"GPPublicKey",
-"GPProductCode",
-"",
-"FBAppId",
-"FBDisplayName",
-"FBShareUrl",
-"FBLikeUrl",
-"",
-"KochavaAppGUID_IOS",
-"KochavaAppGUID_Android",
-"",
-"GDT_UASID",
-"GDT_ASKey",
-"",
-"TapDBAppId",
-"TapDBChannel",
-"TapDBVersion",
-"TapDBPermission",
-"",
-"TT_APP_ID",
-"TT_APP_NAME",
-"TT_CHANNEL",
-"",
-"AnyAppKey",
-"AnyAppSecret",
-"AnyPrivateKey",
-"",
-"TwitterSDKKey",
-"TwitterSDKSecret",
-"",
-"XPAppID",
-"XPAppSecret",
-"XP_SERVER_KEY",
-"",
-"YWAppKey",
-"YWAppSecret",
-"YWChannelID",
-"YWGameID",
-"YWGameSecret",
-"Ywan_gameId_IOS",
-"Ywan_gameId_Android",
-"IosCapWifi",
-"YW_URLName",
-"YW_URLSchemes",
-"",
-"SM_GAME_ID",
-"",
-"AFAppID",
-"AFAppKey",
-"AF2TT",
-"",
-"YHAppID",
-"YHGameID",
-"YHChannelID",
-"YHPaySign",
-"",
-"AppsFlyerDevKey_Android",
-"AppsFlyerAppID_Android",
-"AppsFlyerDevKey_IOS",
-"AppsFlyerAppID_IOS",
-"",
-"OneStorePublicKey",
-"OneStoreProductCode",
-"",
-"MyCardSandboxMode",
-"",
-"CollectAppId",
-"CollectChannel",
-"",
-"MRAdid",
-"MRPlatform",
-"MRGameId",
-"MRProductCode",
-"",
-"XMWClientID",
-"XMWClientSecret",
-"XMWADTAppID",
-"XMWTTAppID",
-"XMWTTAppName",
-"",
-"BUDAppID_QA",
-"BUDSlotID_QA",
-"BUDAppID",
-"BUDSlotID",
-"",
-"HWeiAppID",
-"HWeiCpID",
-"HWeiMerchantID",
-"HWeiMerchantName ",
-"",
-"UCGameId",
-"",
-"OppoAppId",
-"OppoSecret",
-"OppoAppKey",
-"OppoIsGCAD",
-"",
-"VivoAppId",
-"VivoCpId",
-"",
-"XMAppId",
-"XMAppKey",
-"",
-"YSDKAppID",
-"YSDKWXAppID",
-"YSDKXGAppID",
-"YSDKXGAccessKey",
-"YSDKOfferID",
-"YSDKGameCoinRate",
-"YSDKGameCoinZone",
-"",
-"SevenMoorAccessId",
-"SevenMoorLang",
-"",
-"CurrencyType",
-"",
-"CustomerService",
-"",
-"MicroPlatform",
-"",
-"HighGearClose",
-"",
-"PLAY_MODE",
-"",
-"H5Release",
-"",
-"SavePic",
-"",
-"OpenCommunity",
-"",
-"AdaptSceen",
-"",
-"ChargeLimitOpen",
-"",
-"ShowLoginCG",
-"",
-"FirstGenHotVersion",
-"FirstGenHotUrlQA",
-"FirstGenHotUrlOfficial",
-"SecondGenHotUrlQA",
-"SecondGenHotUrlOfficial",
-"Era",
-"ServerIp",
-"Port",
-"FirstProject"
-]
-var dbb=
-{
 
-LaunchAdd:"http://center-sea.xuegaogame.com/center/config/getconfigi",
-CandidateDomain1:"",
-CandidateDomain2:"",
-Identifier:"",
-ChannelCode:"",
-null1:"",
-GameName:"",
-BundleID:"",
-Platform:"",
-IAPCode:"",
-null2:"",
-ShortVersion:"",
-BuildVersion:"",
-VersionCode:"",
-null3:"",
-Lang:"",
-Region:"",
-Channel:"",
-null4:"",
-RechargeType:"",
-WorkStyle:"",
-LoginMod:"",
-ReviewType:"",
-null5:"",
-Mark:"",
-null6:"",
-PackedLoginChannels:"",
-PackedWorkChannels:"",
-PackedStatChannels:"",
-null7:"",
-InApp_ProductCode:"",
-InApp_ThirdOpen:"",
-null8:"",
-IcicID:"",
-IcicKey:"",
-XGSdkNew:"",
-XGThirdPay:"",
-XGCenterUrl:"",
-null9:"",
-WXAppId:"",
-WxH5IAP:"",
-WxH5IAPAppId:"",
-WxH5IAPReferer:"",
-null11:"",
-ALiAppId:"",
-null12:"",
-GPClientId:"",
-GPPublicKey:"",
-GPProductCode:"",
-null13:"",
-FBAppId:"",
-FBDisplayName:"",
-FBShareUrl:"",
-FBLikeUrl:"",
-null14:"",
-KochavaAppGUID_IOS:"",
-KochavaAppGUID_Android:"",
-null15:"",
-GDT_UASID:"",
-GDT_ASKey:"",
-null16:"",
-TapDBAppId:"",
-TapDBChannel:"",
-TapDBVersion:"",
-TapDBPermission:"",
-null17:"",
-TT_APP_ID:"",
-TT_APP_NAME:"",
-TT_CHANNEL:"",
-null18:"",
-AnyAppKey:"",
-AnyAppSecret:"",
-AnyPrivateKey:"",
-null19:"",
-TwitterSDKKey:"",
-TwitterSDKSecret:"",
-null20:"",
-XPAppID:"",
-XPAppSecret:"",
-XP_SERVER_KEY:"",
-null21:"",
-YWAppKey:"",
-YWAppSecret:"",
-YWChannelID:"",
-YWGameID:"",
-YWGameSecret:"",
-Ywan_gameId_IOS:"",
-Ywan_gameId_Android:"",
-IosCapWifi:"",
-YW_URLName:"",
-YW_URLSchemes:"",
-null22:"",
-SM_GAME_ID:"",
-null23:"",
-AFAppID:"",
-AFAppKey:"",
-AF2TT:"",
-null24:"",
-YHAppID:"",
-YHGameID:"",
-YHChannelID:"",
-YHPaySign:"",
-null25:"",
-AppsFlyerDevKey_Android:"",
-AppsFlyerAppID_Android:"",
-AppsFlyerDevKey_IOS:"",
-AppsFlyerAppID_IOS:"",
-null26:"",
-OneStorePublicKey:"",
-OneStoreProductCode:"",
-null27:"",
-MyCardSandboxMode:"",
-null28:"",
-CollectAppId:"",
-CollectChannel:"",
-null29:"",
-MRAdid:"",
-MRPlatform:"",
-MRGameId:"",
-MRProductCode:"",
-null30:"",
-XMWClientID:"",
-XMWClientSecret:"",
-XMWADTAppID:"",
-XMWTTAppID:"",
-XMWTTAppName:"",
-null31:"",
-BUDAppID_QA:"",
-BUDSlotID_QA:"",
-BUDAppID:"",
-BUDSlotID:"",
-null32:"",
-HWeiAppID:"",
-HWeiCpID:"",
-HWeiMerchantID:"",
-HWeiMerchantName :"",
-null33:"",
-UCGameId:"",
-null34:"",
-OppoAppId:"",
-OppoSecret:"",
-OppoAppKey:"",
-OppoIsGCAD:"",
-null35:"",
-VivoAppId:"",
-VivoCpId:"",
-null36:"",
-XMAppId:"",
-XMAppKey:"",
-null37:"",
-YSDKAppID:"",
-YSDKWXAppID:"",
-YSDKXGAppID:"",
-YSDKXGAccessKey:"",
-YSDKOfferID:"",
-YSDKGameCoinRate:"",
-YSDKGameCoinZone:"",
-null38:"",
-SevenMoorAccessId:"",
-SevenMoorLang:"",
-null39:"",
-CurrencyType:"",
-null40:"",
-CustomerService:"",
-null41:"",
-MicroPlatform:"",
-null42:"",
-HighGearClose:"",
-null43:"",
-PLAY_MODE:"",
-null44:"",
-H5Release:"",
-null45:"",
-SavePic:"",
-null46:"",
-OpenCommunity:"",
-null47:"",
-AdaptSceen:"",
-null48:"",
-ChargeLimitOpen:"",
-null49:"",
-ShowLoginCG:"",
-null50:"",
-FirstGenHotVersion:"",
-FirstGenHotUrlQA:"",
-FirstGenHotUrlOfficial:"",
-SecondGenHotUrlQA:"",
-SecondGenHotUrlOfficial:"",
-Era:"",
-ServerIp:"",
-Port:"",
-FirstProje:""
-}
-// var obj = {};
-// 　　Object.defineProperty(obj,"newProp",{
-// 　　　　get:function(){
-// 　　　　　　return obj;
-// 　　　　},
-// 　　　　set:function(newVal){
-// 　　　　　　document.getElementById("inp").value = newVal;
-// console.log(newVal)
-// 　　　　　　//document.getElementById("showText").innerHTML = newVal;
-// 　　　　}
-// 　　})
-// 　　document.addEventListener("keyup",function(e){
-// 　　　　obj.newProp = e.target.value;
-// 　　})
-// console.log($('#testSelect option:selected') .val())
-// console.log(da[0]=fm.se.xl)
-// console.log(da[0]=fm.name.name)
-//  da[0]="aa";
-//  db[0]="bb";
-//     $.ajax({
-//     type:"post",
-//     url:"http://localhost:3000",
-//     data:{da,db}, traditional: true,//必须指定为true
-//     success:function(data){
-//        // console.log(data) 
-//     }
-// });
-var a="22"
 
 var vm=new Vue({
+
   el: '#demo',
   data: {
-          cnhw:"cn",
-          appname:""
-  
+    
+       channelCode:"",
+       gameName:"",
+       bundleID:"",
+       ipaCode:"",
+       platForm:"",
+       MD5:"",
+       gameVision:"",
+       appId:""
+      
   },
-  mounted(){
+
+ created(){
 this.ces()
   },
-  methods:{
-  ces(){
 
-  },
-  tj(){
-    //  da[0]=this.appname
-    // console.log(this.appname)
-         console.log(this.cnhw)
-        this.cnhw==="hw"? dbb.CandidateDomain1="hw": dbb.CandidateDomain1="cn"
-         //  this.cnhw==="hw"? xl.id="hw": xl.id="cn"
-         // this.cnhw==="hw"? xl.job="hw": xl.job="cn"
-         //  this.cnhw==="hw"? xl.age=null: xl.age=null
- 
-console.log(dbb)
-     var db = []
-for (let i in dbb) {
-    db.push(dbb[i]); 
+ methods:{
+
+  ces(){
+     $.ajax({
+    type:"get",
+    url:"http://192.168.0.104:3000/da",
+    success:function(data){
+     //console.log(JSON.parse(data)) 
+    }
+}).then(data=>{
+
+
+   var da = []
+for (let i in JSON.parse(data)) {
+    da.push(JSON.parse(data)[i]); 
  
 }
-console.log(db);
+ this.$store.commit('getda',da)   
+ //console.log(da)
+
+})
+
           $.ajax({
     type:"get",
-    url:"http://localhost:3000/a",
+    url:"http://192.168.0.104:3000/db",
     success:function(data){
-      console.log(data)
-       console.log(JSON.parse(data)) 
-       // console.log(JSON.stringify(data))
-    }
-})
-          $.ajax({
-    type:"post",
-    url:"http://localhost:3000",
-    data:{da,db}, traditional: true,//必须指定为true
-    success:function(data){
-       console.log(data) 
-    }
-})
-  }
 
-  }
+     // console.log(JSON.parse(data)) 
+ 
+    }
+}).then(data=>{
+//  var data=JSON.parse(data)
+
+  this.$store.commit('getdb',JSON.parse(data))     
+})
+
+          $.ajax({
+    type:"get",
+    url:"http://localhost:3000/xggy",
+    success:function(data){
+     // console.log(data)
+      // console.log(JSON.parse(data)) 
+       // console.log(JSON.stringify(data))
+       //this.qmkf=JSON.parse(data)
+    }
+}).then(data=>{
+ 
+    
+  this.$store.commit('getxggy',data)     
+})
+        
+          $.ajax({
+    type:"get",
+    url:"http://localhost:3000/qmkf",
+    success:function(data){
+     // console.log(data)
+     // console.log(JSON.parse(data)) 
+       // console.log(JSON.stringify(data))
+  
+    }
+}).then(data=>{
+ 
+     
+  this.$store.commit('getqmkf',data)     
+})
+
+
+  },
+
+
+
+
+  submit(){
+
+
+     
+    //var aa=this.channelcode.substring(0, 2)
+//console.log(aa)
+// console.log(this.$store.state.da)
+// console.log(this.$store.state.db)
+// console.log(this.$store.state.xggy)
+// console.log(this.$store.state.qmkf)
+var da=this.$store.state.da
+var dbb=this.$store.state.db
+var xggy=this.$store.state.xggy
+var qmkf=this.$store.state.qmkf
+// console.log(da)
+// console.log(dbb)
+// console.log(xggy)
+// console.log(qmkf)
+
+//系列判断
+// console.log(channelHeader)
+// console.log(typeof(channelHeader))
+var ab=this.channelCode.substring(0, 3)
+if(this.channelCode.length!=5)
+{
+
+
+
+
+window.location.href = ("http://192.168.0.104:3000/404");
+ // window.open("http://192.168.0.104:3000/404")
+  return;
+}
+else if((ab!="131")&&(ab!="141")&&(ab!="151")&&(ab!="161")&&(ab!="111")&&(ab!="132")&&(ab!="142")&&(ab!="201")&&(ab!="191")){
+
+
+
+
+
+
+window.location.href = ("http://192.168.0.104:3000/404");
+ // window.open("http://192.168.0.104:3000/404")
+  return;
+
+}
+isChannelCode(dbb,this.channelCode,this.gameName)
+isLanguage(dbb,this.channelCode,this.appId,this.gameVision,this.ipaCode)
+ 
+inputValue(dbb,this.channelCode,this.gameName,this.bundleID,this.ipaCode,this.platForm,this.MD5,this.gameVision)
+
+ ajaxPost(dbb,da,this.chanelCode,function(data){
+
+
+})
+
+window.location.href = ("http://192.168.0.104:3000/download");
+// this.$router.push("http://localhost:3000/data/data.xls")
+// window.open("http://192.168.0.104:3000/data/data.xls")
+ // document.location.href = ("http://192.168.0.104:3000/data/data.xls");
+// try {
+//         var elemIF = document.createElement("iframe");
+//         elemIF.src = "http://192.168.0.104:3000/data/data.xls";
+//         elemIF.style.display = "none";
+//         document.body.appendChild(elemIF);
+
+//     }
+// catch (e) {}  
+
+// window.open("http://192.168.0.104:3000/download")
+
+
+
+
+
+
+
+   }
+
+
+  },
+
+
+
+  store:store
 })
 
 
@@ -577,5 +339,21 @@ console.log(db);
 
  </script> 
 
+  <style>
+  .xx{
+    color: white;
+    background-color: black;
+  }
 
+         .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 </html>
