@@ -8,9 +8,9 @@
   <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
   <meta name="description" content="">
   <meta name="author" content="">
-
+<link rel="icon" href="../public/favicon.ico">
 <!--   <link rel="icon" href="../../favicon.ico"> -->
-  <title>Examples</title>
+  <title>Config生成</title>
   <!-- Bootstrap core CSS -->
 <!--   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
 <!--   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> -->
@@ -42,8 +42,8 @@
     <div class="inner">
       <h3 class="masthead-brand">ConfigV44</h3>
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="http://192.168.0.104:3000/">Home</a>
-        <a class="nav-link" href="http://192.168.0.104:3000/download">Download</a>
+        <a class="nav-link active" href="http://192.168.2.46:3000/">Home</a>
+        <a class="nav-link" href="http://192.168.2.46:3000/download">Download</a>
        
       </nav>
     </div>
@@ -52,32 +52,25 @@
   <main role="main" class="inner cover">
      <div class="form-signin" >
 
-
-  <div class="form-label-group">
+   <div class="form-label-group">
+    <input v-model="platForm" type="text"  class="form-control" placeholder="Platform" >
+    <label for="inputEmail">ch_渠道号_xxxx</label>
+  </div>
+<!--   <div class="form-label-group">
     <input v-model="channelCode" type="number"  class="form-control"  placeholder="渠道号" required autofocus>
     <label for="inputEmail">渠道号</label>
-  </div>
+  </div> -->
 
   <div  class="form-label-group">
     <input v-model="gameName" type="text"  class="form-control" placeholder="游戏名" >
     <label for="inputEmail">游戏名</label>
   </div>
 
-
-
-    <div class="form-label-group">
-    <input v-model="ipaCode" type="text"  class="form-control" placeholder="IAPCode" >
-    <label for="inputEmail">IAPCode</label>
-  </div>
-
-    <div class="form-label-group">
-    <input v-model="platForm" type="text"  class="form-control" placeholder="Platform" >
-    <label for="inputEmail">Platform</label>
-  </div>
+ 
 
     <div class="form-label-group">
     <input v-model="MD5" type="text"  class="form-control" placeholder="md5" >
-    <label for="inputEmail">MD5</label>
+    <label for="inputEmail">MD5码</label>
   </div>
 
   <div class="form-label-group">
@@ -89,10 +82,14 @@
     <input v-model="bundleID" type="text"  class="form-control" placeholder="bundle id" >
     <label for="inputEmail">bundle Id</label>
   </div>
-
+<P>以下选填</P>
+   <div class="form-label-group">
+    <input v-model="ipaCode" type="text"  class="form-control" placeholder="IAPCode" >
+    <label for="inputEmail">简体必填 IAPCode</label>
+  </div>
     <div class="form-label-group">
     <input  v-model="appId" type="number"  class="form-control" placeholder="appID" >
-    <label for="inputEmail">appID</label>
+    <label for="inputEmail">繁体必填 appID</label>
   </div>
 <!-- <a href="http://192.168.0.104:3000/data/config.xls" download="config">12</a>
   <div class="checkbox mb-3">
@@ -131,8 +128,10 @@ const store = new Vuex.Store({
   state: {
     da:[],
     db:{},
-    xggy:{},
-    qmkf:{},
+    // xggy:{},
+    // qmkf:{},
+    ip:''
+   
     
   
   },
@@ -143,12 +142,17 @@ const store = new Vuex.Store({
     getdb(state,db){
       this.state.db=db
     },
-    getxggy(state,xggy){
-      this.state.xggy=xggy
-    },
-    getqmkf(state,qmkf){
-      this.state.qmkf=qmkf
+    // getxggy(state,xggy){
+    //   this.state.xggy=xggy
+    // },
+    // getqmkf(state,qmkf){
+    //   this.state.qmkf=qmkf
+    // },
+     getip(state,ip){
+      this.state.ip=ip
     }
+
+    
   }
 })
 
@@ -169,6 +173,8 @@ var vm=new Vue({
        MD5:"",
        gameVision:"",
        appId:""
+   
+ 
       
   },
 
@@ -179,9 +185,36 @@ this.ces()
  methods:{
 
   ces(){
+
+
+
+
+
+
+    getUserIP((ip)=>{ 
+
+
+var date2=Date.now.toLocaleString()
+       this.$store.commit('getip',ip)
+    
+})
+
+//  $.ajax({
+//     type:"get",
+//     url:"http://192.168.2.46:3000",
+//     data:{ip}, traditional: true,//必须指定为true
+//     success:function(data){
+    
+//     }
+// })
+
+
+
+
+
      $.ajax({
     type:"get",
-    url:"http://192.168.0.104:3000/da",
+    url:"http://192.168.2.46:3000/da",
     success:function(data){
      //console.log(JSON.parse(data)) 
     }
@@ -200,7 +233,7 @@ for (let i in JSON.parse(data)) {
 
           $.ajax({
     type:"get",
-    url:"http://192.168.0.104:3000/db",
+    url:"http://192.168.2.46:3000/db",
     success:function(data){
 
      // console.log(JSON.parse(data)) 
@@ -212,35 +245,35 @@ for (let i in JSON.parse(data)) {
   this.$store.commit('getdb',JSON.parse(data))     
 })
 
-          $.ajax({
-    type:"get",
-    url:"http://localhost:3000/xggy",
-    success:function(data){
-     // console.log(data)
-      // console.log(JSON.parse(data)) 
-       // console.log(JSON.stringify(data))
-       //this.qmkf=JSON.parse(data)
-    }
-}).then(data=>{
+//           $.ajax({
+//     type:"get",
+//     url:"http://localhost:3000/xggy",
+//     success:function(data){
+//      // console.log(data)
+//       // console.log(JSON.parse(data)) 
+//        // console.log(JSON.stringify(data))
+//        //this.qmkf=JSON.parse(data)
+//     }
+// }).then(data=>{
  
     
-  this.$store.commit('getxggy',data)     
-})
+//   this.$store.commit('getxggy',data)     
+// })
         
-          $.ajax({
-    type:"get",
-    url:"http://localhost:3000/qmkf",
-    success:function(data){
-     // console.log(data)
-     // console.log(JSON.parse(data)) 
-       // console.log(JSON.stringify(data))
+//           $.ajax({
+//     type:"get",
+//     url:"http://localhost:3000/qmkf",
+//     success:function(data){
+//      // console.log(data)
+//      // console.log(JSON.parse(data)) 
+//        // console.log(JSON.stringify(data))
   
-    }
-}).then(data=>{
+//     }
+// }).then(data=>{
  
      
-  this.$store.commit('getqmkf',data)     
-})
+//   this.$store.commit('getqmkf',data)     
+// })
 
 
   },
@@ -251,7 +284,9 @@ for (let i in JSON.parse(data)) {
   submit(){
 
 
+  
      
+  
     //var aa=this.channelcode.substring(0, 2)
 //console.log(aa)
 // console.log(this.$store.state.da)
@@ -262,6 +297,8 @@ var da=this.$store.state.da
 var dbb=this.$store.state.db
 var xggy=this.$store.state.xggy
 var qmkf=this.$store.state.qmkf
+var ip=this.$store.state.ip
+//console.log(ip)
 // console.log(da)
 // console.log(dbb)
 // console.log(xggy)
@@ -270,6 +307,13 @@ var qmkf=this.$store.state.qmkf
 //系列判断
 // console.log(channelHeader)
 // console.log(typeof(channelHeader))
+
+
+this.channelCode=this.platForm.substring(3, 8)
+//console.log(this.channelCode)
+
+
+
 var ab=this.channelCode.substring(0, 3)
 if(this.channelCode.length!=5)
 {
@@ -277,7 +321,7 @@ if(this.channelCode.length!=5)
 
 
 
-window.location.href = ("http://192.168.0.104:3000/404");
+window.location.href = ("http://192.168.2.46:3000/404");
  // window.open("http://192.168.0.104:3000/404")
   return;
 }
@@ -288,22 +332,23 @@ else if((ab!="131")&&(ab!="141")&&(ab!="151")&&(ab!="161")&&(ab!="111")&&(ab!="1
 
 
 
-window.location.href = ("http://192.168.0.104:3000/404");
+window.location.href = ("http://192.168.2.46:3000/404");
  // window.open("http://192.168.0.104:3000/404")
   return;
 
 }
-isChannelCode(dbb,this.channelCode,this.gameName)
 isLanguage(dbb,this.channelCode,this.appId,this.gameVision,this.ipaCode)
- 
+
+isChannelCode(dbb,this.channelCode,this.gameName)
+
 inputValue(dbb,this.channelCode,this.gameName,this.bundleID,this.ipaCode,this.platForm,this.MD5,this.gameVision)
 
- ajaxPost(dbb,da,this.chanelCode,function(data){
-
+ ajaxPost(dbb,da,ip,this.chanelCode,function(data){
+console.log(data)
 
 })
 
-window.location.href = ("http://192.168.0.104:3000/download");
+window.location.href = ("http://192.168.2.46:3000/download");
 // this.$router.push("http://localhost:3000/data/data.xls")
 // window.open("http://192.168.0.104:3000/data/data.xls")
  // document.location.href = ("http://192.168.0.104:3000/data/data.xls");
@@ -317,7 +362,6 @@ window.location.href = ("http://192.168.0.104:3000/download");
 // catch (e) {}  
 
 // window.open("http://192.168.0.104:3000/download")
-
 
 
 

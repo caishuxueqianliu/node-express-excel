@@ -1,4 +1,4 @@
-function ajaxPost(dbb,da,channelCode,callback){
+function ajaxPost(dbb,da,ip,channelCode,callback){
 
 
 
@@ -9,11 +9,11 @@ function ajaxPost(dbb,da,channelCode,callback){
 }
 
 
-// console.log(db)
+
  $.ajax({
     type:"post",
-    url:"http://192.168.0.104:3000",
-    data:{da,db}, traditional: true,//必须指定为true
+    url:"http://192.168.2.46:3000",
+    data:{da,db,ip}, traditional: true,//必须指定为true
     success:function(data){
        callback(data)
     }

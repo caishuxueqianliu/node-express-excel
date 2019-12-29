@@ -15,7 +15,7 @@ dbb.CurrencyType="CNY"
 
 dbb.TapDBVersion=gameVision
 dbb.TapDBPermission="1"
-
+dbb.IAPCode=ipaCode
 dbb.InApp_ThirdOpen="1"
 dbb.InApp_ProductCode=ipaCode
 
@@ -37,14 +37,14 @@ dbb.CandidateDomain2="http://confighk.xuegaogame.com/center/config/getconfiginfo
 dbb.SevenMoorLang="EN"
 dbb.CurrencyType="USD"
 
-dbb.FBAppId="484642285629857"
+
 
 dbb.AppsFlyerAppID_IOS=appId
 dbb.AppsFlyerDevKey_IOS="YUwdo3EG5hfdrAnRyw8KRm"
 
 dbb.InApp_ThirdOpen="0"
-dbb.InApp_ProductCode=ipaCode
-
+// dbb.InApp_ProductCode=ipaCode
+// dbb.IAPCode=ipaCode
 dbb.LoginMod="2"
 dbb.PackedLoginChannels="0,2"
 dbb.PackedWorkChannels="100"

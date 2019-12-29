@@ -11,7 +11,7 @@ function
 dbb.ChannelCode=channelCode
 dbb.GameName=gameName
 dbb.BundleID=bundleID
-dbb.IAPCode=ipaCode
+// dbb.IAPCode=ipaCode
 dbb.Platform=platForm
 dbb.Identifier=MD5
 dbb.GameVersion=gameVision
