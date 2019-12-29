@@ -8,10 +8,12 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
 
+  <script src="/public/lib/vue-2.4.0.js"></script>
+
 <link rel="icon" href="../public/favicon.ico">
   <title>Config生成</title>
   <link href="/public/bootstrap3.3.7.css" rel="stylesheet">
-
+ <script src="/public/lib/jquery.js"></script> 
   <link href="/public/css/main.css" rel="stylesheet">
    <style>
   
@@ -30,7 +32,7 @@
 
 </head>
   <body class="text-center">
- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+ <div id="all" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
     <div class="inner">
       <h3 class="masthead-brand">ConfigV44</h3>
@@ -50,6 +52,18 @@
       <a href="http://192.168.2.46:3000/data/config.xls" download="config" class="btn btn-lg btn-secondary xx">Download config</a>
        <a href="http://192.168.2.46:3000/data/data.xls" download="data" class="btn btn-lg btn-secondary xx">Download   data</a>
     </p>
+
+<!--   <label>请选择一个图像文件：</label>  
+<input type="file" id="pic_selector" multiple/> 
+<button id="tj">提交</button> -->
+<!-- <form action="http://192.168.2.46:3000/download" method="post">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="validatedCustomFile" multiple>
+    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+    <div class="invalid-feedback">Example invalid custom file feedback</div>
+  </div>
+   <button  @click="submit" class="btn btn-lg btn-secondary btn-block">Submit</button>
+</form> -->
   </main>
 
   <footer class="mastfoot mt-auto">
@@ -59,6 +73,59 @@
   </footer>
 </div>
 </body>
+
+
+<script type="text/javascript">
+
+// let file = document.querySelector("input[type=file]").files;
+
+     
+//    var tj=document.getElementById("tj")
+//    tj.onclick=function(){
+
+//     var a = document.getElementById("pic_selector").files[0];
+//         //console.log(a);
+//         var formdata = new FormData();
+//        // console.log(formdata);
+//       formdata.append('img',a);
+//        // console.log(formdata.get('img'))
+  
+//         $.ajax({
+//             url:"http://192.168.2.46:3000/download",
+//             data:formdata,
+//             type:'POST',
+//             processData: false,//必须
+//             contentType: false,//必须
+//             success:function(data){
+              
+//                 var imgpath=   data.imgPath
+//                 $('img').attr('src',imgpath)
+// }
+// })
+
+
+
+
+
+
+//   }
+// var vm=new Vue({
+//     el: '#all',
+//     data() {
+//       return {
+//         fileList: []
+//       };
+//     },
+//     methods: {
+    
+      
+//     }
+  
+
+
+
+// })
+</script>
 
 <style type="text/css">
 

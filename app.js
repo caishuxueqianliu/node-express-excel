@@ -33,10 +33,14 @@ app.get('/download',(req,res)=>{
 	res.render('download.html')
 	//console.log('下载页面___'+date)
 })
+app.post('/download',(req,res)=>{
+
+})
 app.get('/404',(req,res)=>{
 	res.render('404.html')
 	//console.log('error页面___'+date)
 })
+
 // app.get('/qmkf',(req,res)=>{
 // 	fs.readFile("./public/qmkf.json", (err,data)=>{
 // 		res.setHeader("Access-Control-Allow-Origin", "*"); 
