@@ -30,6 +30,7 @@
            <script src="/public/lib/ajaxPost.js"></script>
              <script src="/public/lib/isLanguage.js"></script>
               <script src="/public/lib/selectValue.js"></script>
+               <script src="/node_modules/blueimp-md5/js/md5.js"></script>
 </head>
 
   <body class="text-center">
@@ -68,10 +69,11 @@
 
  
 
-    <div class="form-label-group">
+   <!--  <div class="form-label-group">
     <input v-model="MD5" type="text"  class="form-control" placeholder="md5" >
     <label for="inputEmail">MD5码</label>
   </div>
+ -->
 
   <div class="form-label-group">
     <input v-model="gameVision" type="text"  class="form-control" placeholder="出包版本号" >
@@ -186,7 +188,7 @@ this.ces()
 
   ces(){
 
-
+//console.log(md5(123))
 
 
 
@@ -312,8 +314,8 @@ var ip=this.$store.state.ip
 this.channelCode=this.platForm.substring(3, 8)
 //console.log(this.channelCode)
 
-
-
+this.MD5=md5(this.channelCode)
+console.log(this.MD5)
 var ab=this.channelCode.substring(0, 3)
 if(this.channelCode.length!=5)
 {
