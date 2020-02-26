@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+<!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+<!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+<!-- link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you 
+    wish to resize images before upload. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+    This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/sortable.min.js" type="text/javascript"></script>
+<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for 
+    HTML files. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/purify.min.js" type="text/javascript"></script>
+<!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js 
+   3.3.x versions without popper.min.js. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- bootstrap.min.js below is needed if you wish to zoom and preview file content in a detail modal
+    dialog. bootstrap 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<!-- the main fileinput plugin file -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+<!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.js"></script>
+<!-- optionally if you need translation for your language then include  locale file as mentioned below -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/(lang).js"></script>
+
+</head>
+  <body class="text-center">
+
+
+
+
+      <div class="col-md-9 input-group">
+      <input type="file" name="file"  id="imgUpload" class="imgFile form-control">
+      <input type="submit" value="提交" id="button" class="btn btn-primary">
+    </div>
+
+
+<!-- 
+<div class="form-group" id="upload">
+  <input id="myFile" name="myFile" type="file" multiple>
+</div>
+<input type="submit" value="提交" id="button" class="btn btn-primary">
+
+</div> -->
+
+
+
+</body>
+
+</html>
+<script type="text/javascript">
+  $("#input-id").fileinput();
+    document.getElementById('button').onclick=()=>{
+      console.log(123)
+  $("#imgUpload")
+      .fileinput({
+        language: "zh", //设置语言
+        uploadUrl:"http://localhost:3000/image", //上传的地址
+        allowedFileExtensions: ["jpg", "png", "jpeg", "bmp"], //接收的文件后缀
+        theme: "fa",      // 主题设置
+        //initialPreview: url1 + filePath + fileName,        // 初始预览区域显示的图片
+        initialPreviewAsData: true,
+        initialPreviewConfig: [
+          { type: "image", fileType: "image", caption: 'fileName' }
+        ],
+        dropZoneEnabled: false,          // 禁止点击预览区域进行文件上传操作
+        maxFileCount: 1,                    // 最大上传为 1
+        showUpload: false,             // 不显示上传按钮，选择后直接上传
+        previewClass:"uploadPreview",
+      })
+      .on("change", function() {               
+        // 清除掉上次上传的图片
+        $(".uploadPreview").find(".file-preview-frame:first").remove();
+    $(".uploadPreview").find(".kv-zoom-cache:first").remove();
+      })
+      .on("filebatchselected", function(e, files) {        
+        $(this).fileinput("upload");             // 文件选择完直接调用上传方法。
+      })
+      .on("fileuploaded", function(e, data, previewiId, index) {       // 上传完成后的处理
+        var form = data.form,
+          files = data.files,
+          extra = data.extra,
+          response = data.response,        // 响应
+          reader = data.reader;          // 文件对象
+        if (response.flag) {
+          let img = new Image();     // 这里上传的是图片，对图片处理获取图片的分辨率
+          img.src = reader.result;
+          if (img.complete) {
+            $(this).attr("data-displayReso", img.width + "*" + img.height);
+          } else {
+            img.onload = function() {
+              $(this).attr("data-displayReso", img.width + "*" + img.height);
+            };
+          }
+        }
+      });
+}
+</script>
+<!--  
+<script>
+   $(document).on('ready', function() {
+         $("#input").fileinput({
+        theme: 'explorer-fas',
+        //上传地址
+        uploadUrl: "http://localhost:3000/image",
+        //默认异步上传true(上传2张请求后台url 2次，每次接收到1张)；
+        // 同步上传false(同时上传2张图片时，后台用数组接收,请求后台URL 1次，接收到2张图)
+        uploadAsync: true,
+        //不覆盖已存在的图片
+        overwriteInitial: false,
+        enctype: 'multipart/form-data',
+        //接收的文件后缀
+        allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
+        showUpload: true, //是否显示上传按钮
+        showRemove: false, // 是否显示移除按钮
+        maxFileCount: 10,//上传图片最大数量
+        msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+        showCaption: true,//是否显示说明
+        showPreview: true,// 是否预展示图片
+        maxFileSize: 51200,//单位为kb，如果为0表示不限制文件大小  50*1024=50MB
+
+
+         });
+     });
+
+
+
+       document.getElementById('button').onclick=()=>{
+        //console.log(123)
+           var image= document.getElementById("myFile").value
+           //console.log(image)
+
+           if(image==''){
+           // console.log('kong')
+           return
+           }
+else
+               $.ajax({
+    type:"post",
+    url:"http://localhost:3000/image",
+    data:{image}, traditional: true,//必须指定为true
+    success:function(data){
+    
+    }
+})
+
+       }
+</script>  -->
+

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+
+  <script src="/public/lib/vue-2.4.0.js"></script>
+
+<link rel="icon" href="../public/favicon.ico">
+  <title>Config生成</title>
+  <link href="/public/bootstrap3.3.7.css" rel="stylesheet">
+ <script src="/public/lib/jquery.js"></script> 
+  <link href="/public/css/main.css" rel="stylesheet">
+   <style>
+  
+
+         .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+</head>
+  <body class="text-center">
+ <div id="all" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">ConfigV44</h3>
+      <nav class="nav nav-masthead justify-content-center">
+         <a class="nav-link" href="http://192.168.2.46:3000/">Home</a>
+        <a class="nav-link active" href="http://192.168.2.46:3000/download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">下载界面</h1>
+    <p class="lead">config 为最新版模板(已加缺失行)</p>
+    <p class="lead">data   为产生的数据</p>
+    <p class="lead">将data中的数据以数值粘贴至config中即可</p>
+    <p class="lead">
+      <a href="http://192.168.2.46:3000/data/config.xls" download="config" class="btn btn-lg btn-secondary xx">Download config</a>
+       <a href="http://192.168.2.46:3000/data/data.xls" download="data" class="btn btn-lg btn-secondary xx">Download   data</a>
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>©liuhao</p>
+    </div>
+  </footer>
+<div class="form-group" id="upload">
+	<input id="myFile" name="myFile" type="file" multiple>
+</div>
+<input type="submit" value="提交" id="button" class="btn btn-primary">
+
+</div>
+</body>
+<script>
+   $(document).on('ready', function() {
+         $("#input").fileinput({
+      'theme': 'explorer-fas',
+        //上传地址
+        'uploadUrl': "",
+        //默认异步上传true(上传2张请求后台url 2次，每次接收到1张)；
+        // 同步上传false(同时上传2张图片时，后台用数组接收,请求后台URL 1次，接收到2张图)
+        uploadAsync: true,
+        //不覆盖已存在的图片
+        overwriteInitial: false,
+        enctype: 'multipart/form-data',
+        //接收的文件后缀
+        allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
+        showUpload: true, //是否显示上传按钮
+        showRemove: false, // 是否显示移除按钮
+        maxFileCount: 10,//上传图片最大数量
+        msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+        showCaption: true,//是否显示说明
+        showPreview: true,// 是否预展示图片
+        maxFileSize: 51200,//单位为kb，如果为0表示不限制文件大小  50*1024=50MB
+
+
+         });
+     });
+
+</script> 
+
+
+<style type="text/css">
+
+.xx,
+xx:focus,
+xx:hover {
+  color: black;
+  text-shadow: none;
+   background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+</style>
+</html>
+
+
+ 

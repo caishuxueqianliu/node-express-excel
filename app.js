@@ -3,6 +3,8 @@ var express=require('express')
 var app=express()
 var path=require('path')
 
+
+
 app.engine('html', require('express-art-template'))
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -17,6 +19,10 @@ app.use("/data/",express.static(path.join(__dirname,'./data/')))
 
 var sheets = xlsx.parse('./data/resourse.xlsx');//获取到所有sheets
 var Num = 0;//默认从第二条数据开始，一般第一条数据是标题
+
+app.post('/image',(req,res)=>{
+ console.log(req.body)
+})
 app.get('/',(req,res)=>{
 
 
@@ -26,7 +32,7 @@ app.get('/',(req,res)=>{
 
 	var date= new Date().toLocaleString()
 	console.log('访问主页___'+date+"___"+ip)
-	res.render('index.html')
+	res.render('image.html')
 	
 })
 app.get('/download',(req,res)=>{
@@ -74,6 +80,16 @@ app.get('/db',(req,res)=>{
 
 app.post('/',(req,res)=>{	
  //res.setHeader("Access-Control-Allow-Origin", "*"); 
+
+const compressing = require('compressing');
+compressing.zip.compressDir('./data/16117', './data/16117.zip')
+.then(() => {
+    console.log('success');
+})
+.catch(err => {
+    console.error(err);
+});
+
  var da=req.body.da
  var db=req.body.db
  // var ip=db[194]
@@ -124,10 +140,19 @@ Num=0;
 })
 
 
+app.get('/zip',(req,res)=>{
+
+compressing.zip.compressDir('data/16117', 'data/16117.zip')
+.then(() => {
+    console.log('success');
+})
+.catch(err => {
+    console.error(err);
+});
 
 
 
-
+})
 app.listen(3000,()=>{
 	console.log('sucess...')
 })
