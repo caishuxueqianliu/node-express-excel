@@ -3,7 +3,7 @@ var express=require('express')
 var app=express()
 var path=require('path')
 
-
+var formidable = require('./node_modules/formidable');
 
 app.engine('html', require('express-art-template'))
 var bodyParser = require('body-parser')
@@ -21,8 +21,37 @@ var sheets = xlsx.parse('./data/resourse.xlsx');//获取到所有sheets
 var Num = 0;//默认从第二条数据开始，一般第一条数据是标题
 
 app.post('/image',(req,res)=>{
- console.log(req.body)
+ let form = new formidable.IncomingForm();
+    form.uploadDir = "./uploads";
+    form.on('field',(field,value)=>{
+      console.log(field);
+        //console.log(value);
+    });
+    form.on('file',(name,file)=>{
+       // console.log(name);
+       // console.log(file);
+    });
+    form.on('end',()=>{
+        res.end('upload complete');
+    })
+    form.parse(req,(err,fields,files)=>{
+        //重命名
+        
+       // let ran = parseInt(Math.random() * 89999 + 10000);
+        let extname = path.extname(files.file.name);
+        let oldpath=__dirname+'/'+files.file.path
+        let newpath = __dirname + '/uploads/' +files.file.name+ extname;
+        fs.rename(oldpath, newpath,function(err){
+            if(err){
+                throw Error("改名失败");
+            }
+        });
+    });
+res.send('2')
 })
+
+
+
 app.get('/',(req,res)=>{
 
 
