@@ -21,10 +21,12 @@ var sheets = xlsx.parse('./data/resourse.xlsx');//获取到所有sheets
 var Num = 0;//默认从第二条数据开始，一般第一条数据是标题
 
 app.post('/image',(req,res)=>{
+
+
  let form = new formidable.IncomingForm();
     form.uploadDir = "./uploads";
     form.on('field',(field,value)=>{
-      console.log(field);
+     // console.log(field);
         //console.log(value);
     });
     form.on('file',(name,file)=>{
@@ -36,17 +38,55 @@ app.post('/image',(req,res)=>{
     })
     form.parse(req,(err,fields,files)=>{
         //重命名
+        console.log(req)
+var obj=[]
+       for (var i in files ){
+                obj.push(files[i])
+
+        }
+        console.log(obj.length)
+for (var i = 1; i <= obj.length+1; i++) {
         
-       // let ran = parseInt(Math.random() * 89999 + 10000);
-        let extname = path.extname(files.file.name);
+
+	 let extname = path.extname(files.file.name);
         let oldpath=__dirname+'/'+files.file.path
-        let newpath = __dirname + '/uploads/' +files.file.name+ extname;
-        fs.rename(oldpath, newpath,function(err){
-            if(err){
-                throw Error("改名失败");
-            }
+        let newpath = __dirname + '/uploads/' +i+ extname;
+        fs.rename(oldpath, newpath,()=>{
+
         });
+}
+	
+
+//let ran =parseInt((Math.random()*10+1))
+
+        // let extname = path.extname(files.file.name);
+        // let oldpath=__dirname+'/'+files.file.path
+        // let newpath = __dirname + '/uploads/' +ran+ extname;
+        // fs.rename(oldpath, newpath,function(err){
+        //     if(err){
+        //         throw Error("改名失败");
+        //     }
+        // });
+
+
+
+//         var keys = Object.keys(obj);
+// console.log('长度', keys.length);
+// keys.forEach(function(key, index) {
+//   console.log('当前是第', index + 1, '个, key是', key, ', value是', obj[key]);
+// });
+
+
+
+
+        
+
+       
+
+          
     });
+
+
 res.send('2')
 })
 
